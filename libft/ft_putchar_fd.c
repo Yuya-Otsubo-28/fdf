@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 23:07:22 by yotsubo           #+#    #+#             */
-/*   Updated: 2024/07/12 23:07:22 by yotsubo          ###   ########.fr       */
+/*   Created: 2024/04/15 23:52:48 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/04/15 23:52:48 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "libft.h"
 
-int	main(void)
+void	ft_putchar_fd(char c, int fd)
 {
-
+	write(fd, &c, sizeof(char));
 }

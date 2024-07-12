@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 23:07:22 by yotsubo           #+#    #+#             */
-/*   Updated: 2024/07/12 23:07:22 by yotsubo          ###   ########.fr       */
+/*   Created: 2024/04/15 23:52:26 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/04/15 23:52:26 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "libft.h"
 
-int	main(void)
+int	ft_isascii(int c)
 {
-
+	return (c >= 0 && c <= 127);
 }
+
+// int	main(void)
+// {
+// 	char c = 'a';
+// 	printf("%d\n", ft_isascii(c));
+// 	printf("%d\n", isascii(c));
+// 	return (0);
+// }

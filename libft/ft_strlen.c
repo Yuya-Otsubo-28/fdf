@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 23:07:22 by yotsubo           #+#    #+#             */
-/*   Updated: 2024/07/12 23:07:22 by yotsubo          ###   ########.fr       */
+/*   Created: 2024/04/15 23:53:21 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/04/15 23:53:21 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "libft.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
+	size_t	i;
 
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
+
+// int	main(void)
+// {
+// 	char *s = "Hello, World!";
+// 	printf("ft_strlen: %zu\n", strlen(s));
+// 	printf("strlen: %zu\n", strlen(s));
+// 	return (0);
+// }
