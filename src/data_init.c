@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include  "libft.h"
+#include "fdf.h"
+#include "libft.h"
 
 t_data	*err_return(t_data *data)
 {
@@ -36,3 +36,14 @@ t_data	*data_init()
 		return (err_return(data));
 	return (data);
 }
+
+int	main(void)
+{
+	t_data *data;
+
+	data = data_init();
+	(void)data;
+	return (0);
+}
+
+//cc  -L./libft -L./libmlx -I./includes -I./libft -I./libmlx src/data_init.c src/free_utils.c -lft -lmlx -lX11 -lXext
