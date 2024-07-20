@@ -20,7 +20,7 @@ t_data	*err_return(t_data *data)
 	return (NULL);
 }
 
-t_data	*data_init()
+t_data	*data_init(void)
 {
 	t_data	*data;
 
@@ -31,19 +31,19 @@ t_data	*data_init()
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		return (err_return(data));
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 100, 100, "fdf");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1020, "fdf");
 	if (!(data->win_ptr))
 		return (err_return(data));
 	return (data);
 }
 
-int	main(void)
-{
-	t_data *data;
-
-	data = data_init();
-	(void)data;
-	return (0);
-}
+//int	main(void)
+//{
+//	t_data *data;
+//
+//	data = data_init();
+//	(void)data;
+//	return (0);
+//}
 
 //cc  -L./libft -L./libmlx -I./includes -I./libft -I./libmlx src/data_init.c src/free_utils.c -lft -lmlx -lX11 -lXext

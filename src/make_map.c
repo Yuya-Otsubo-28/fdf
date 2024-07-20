@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:57:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/07/20 21:03:07 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/07/20 21:05:10 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_list	*make_map(char *file_name)
 	close(fd);
 	return (map);
 }
-//
+
 //int	main(void)
 //{
 //	t_list *map;

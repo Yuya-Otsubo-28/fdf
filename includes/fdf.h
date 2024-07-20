@@ -26,6 +26,7 @@
 typedef struct s_data {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_list	*map;
 }	t_data;
 
 typedef struct s_point {
@@ -36,5 +37,9 @@ typedef struct s_point {
 }	t_point;
 
 void	free_data(t_data *data);
+
+t_data	*data_init(void);
+
+t_list	*make_map(char *file_name);
 
 #endif
