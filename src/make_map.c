@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:57:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/07/20 17:47:09 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/07/20 20:59:40 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 // 後で消す
 #include <fcntl.h>
 
-int	**err_return(int *fd_p, char **map_strs)
+char	**free_strs(char **strs)
+{
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
+	return (NULL);
+}
+
+t_list *err_return(int *fd_p, char **map_strs)
 {
 	if (fd_p)
 		close(*fd_p);
@@ -24,44 +35,62 @@ int	**err_return(int *fd_p, char **map_strs)
 	return (NULL);
 }
 
+t_point	*init_point(int x, int y, int z)
+{
+	t_point	*point;
+
+	point = (t_point *)malloc(sizeof(t_point));
+	if (!point)
+		return (NULL);
+	point->x = x;
+	point->y = y;
+	point->z = z;
+	return (point);
+}
+
+t_list	*make_line_list(t_list *map, char *line, int x)
+{
+	char	**points;
+	size_t	i;
+	t_list	*node;
+	t_point	*point;
+
+	points = ft_split(line, ' ');
+	if (!points)
+		return (NULL);
+	i = 0;
+	while (points[i])
+	{
+		point = init_point(x, (int)(i + 1), ft_atoi(points[i]));
+		if (!point)
+			return (NULL);
+		node = ft_lstnew(point);
+		if (!node)
+			return (NULL);
+		ft_lstadd_back(&map, node);
+		i++;
+	}
+	return (map);
+}
+
 t_list	*get_map_data(int fd)
 {
 	t_list	*map;
 	char	*line;
+	int		x;
 
 	map = NULL;
+	x = 1;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
+            break ;
+		map = make_line_list(map, line, x++);
+		free(line);
 	}
+	return (map);
 }
-// {
-// 	t_list	*map;
-// 	t_list	*new_node;
-// 	t_list	*line_head;
-// 	char	*line;
-
-// 	map = NULL;
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (!line)
-// 			break ;
-// 		line_head = make_line_list(line);
-// 		free(line);
-// 		if (!line_head)
-// 			return (free_lists(map));
-// 		new_node = ft_lstnew(line_head);
-// 		if (!new_node)
-// 		{
-// 			free_list(line_head);
-// 			return (free_lists(map));
-// 		}
-// 		ft_lstadd_back(&map, new_node);
-// 	}
-// 	return (map);
-// }
 
 t_list	*make_map(char *file_name)
 {
@@ -70,8 +99,25 @@ t_list	*make_map(char *file_name)
 
     fd = open(file_name, O_RDONLY);
     if (fd < 0)
-        return (err_return(NULL, NULL));
-    map = get_map(fd);
+		return (err_return(NULL, NULL));
+    map = get_map_data(fd);
     if (!map)
-        return (&fd, NULL);
+		return (err_return(&fd, NULL));
+	close(fd);
+	return (map);
+}
+
+int	main(void)
+{
+	t_list *map;
+
+	map = make_map("t2.fdf");
+	while (map)
+	{
+		printf("(%d %d %d) ", ((t_point *)(map->content))->x, ((t_point *)(map->content))->y, ((t_point *)(map->content))->z);
+		if (map->next && ((t_point *)(map->content))->x != ((t_point *)(map->next->content))->x)
+			puts("");
+		map = map->next;
+	}
+	return (0);
 }

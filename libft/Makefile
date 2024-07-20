@@ -42,6 +42,7 @@ SRCS = ft_atoi.c \
 		ft_toupper.c \
 		ft_split.c \
 		ft_striteri.c \
+		ft_strclen.c \
 		ft_strmapi.c \
 		ft_itoa.c \
 		ft_strtrim.c \
@@ -59,7 +60,8 @@ SRCS = ft_atoi.c \
 		ft_printf.c \
         ft_printf_utils.c \
         ft_putuint_fd.c \
-        ft_ull_to_hex.c
+        ft_ull_to_hex.c \
+		get_next_line.c 
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./
 CC = cc

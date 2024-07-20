@@ -28,6 +28,11 @@
 # define LOW 1
 # define ADR 2
 
+// for get_next_line
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 typedef unsigned long long	t_ull;
 
 typedef struct s_list
@@ -136,5 +141,10 @@ int		__printf_putchar(int n);
 int		__printf_putuint(unsigned int un);
 int		__printf_putint(int n);
 int		ft_printf(const char *format, ...);
+
+// ↓for get_next_line
+char	*get_next_line(int fd);
+
+ssize_t	ft_strclen(const char *s, char c);
 
 #endif
