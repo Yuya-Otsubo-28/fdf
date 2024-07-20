@@ -28,6 +28,13 @@ typedef struct s_data {
 	void	*win_ptr;
 }	t_data;
 
+typedef struct s_point {
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_point;
+
 void	free_data(t_data *data);
 
 #endif
