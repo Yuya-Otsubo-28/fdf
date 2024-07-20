@@ -6,14 +6,15 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:57:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/07/20 20:59:40 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/07/20 21:03:07 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
-// 後で消す
-#include <fcntl.h>
+
+// [!] to do
+// - return 前のfreeなどの処理
 
 char	**free_strs(char **strs)
 {
@@ -106,18 +107,18 @@ t_list	*make_map(char *file_name)
 	close(fd);
 	return (map);
 }
-
-int	main(void)
-{
-	t_list *map;
-
-	map = make_map("t2.fdf");
-	while (map)
-	{
-		printf("(%d %d %d) ", ((t_point *)(map->content))->x, ((t_point *)(map->content))->y, ((t_point *)(map->content))->z);
-		if (map->next && ((t_point *)(map->content))->x != ((t_point *)(map->next->content))->x)
-			puts("");
-		map = map->next;
-	}
-	return (0);
-}
+//
+//int	main(void)
+//{
+//	t_list *map;
+//
+//	map = make_map("t2.fdf");
+//	while (map)
+//	{
+//		printf("(%d %d %d) ", ((t_point *)(map->content))->x, ((t_point *)(map->content))->y, ((t_point *)(map->content))->z);
+//		if (map->next && ((t_point *)(map->content))->x != ((t_point *)(map->next->content))->x)
+//			puts("");
+//		map = map->next;
+//	}
+//	return (0);
+//}
