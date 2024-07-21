@@ -22,6 +22,8 @@
 # include <limits.h>
 # include <stdarg.h>
 
+# define TRUE 1
+# define FALSE 0
 
 // for ft_printf
 # define UP 0
@@ -34,6 +36,7 @@
 # endif
 
 typedef unsigned long long	t_ull;
+typedef int	t_bool;
 
 typedef struct s_list
 {

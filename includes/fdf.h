@@ -23,12 +23,6 @@
 # include <stdarg.h>
 # include "mlx.h"
 
-typedef struct s_data {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_list	*map;
-}	t_data;
-
 typedef struct s_point {
 	int	x;
 	int	y;
@@ -36,10 +30,16 @@ typedef struct s_point {
 	int	color;
 }	t_point;
 
+typedef struct s_data {
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_point	***map;
+}	t_data;
+
 void	free_data(t_data *data);
 
 t_data	*data_init(void);
 
-t_list	*make_map(char *file_name);
+t_point	***make_map(char *filename);
 
 #endif

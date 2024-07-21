@@ -1,39 +1,122 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_map.c                                         :+:      :+:    :+:   */
+/*   make=map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 18:57:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/07/20 21:05:10 by yuotsubo         ###   ########.fr       */
+/*   Created: 2024/07/21 15:37:19 by yotsubo           #+#    #+#             */
+/*   Updated: 2024/07/21 15:37:19 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-// [!] to do
-// - return 前のfreeなどの処理
+#include <fcntl.h>
 
-char	**free_strs(char **strs)
+void	free_lines(char **lines)
 {
 	size_t	i;
 
+	if (!lines)
+		return ;
 	i = 0;
-	while (strs[i])
-		free(strs[i++]);
-	free(strs);
+	while (lines[i])
+		free(lines[i++]);
+	free(lines);
+}
+
+void	free_points(t_point **points)
+{
+	size_t	i;
+
+	if (!points)
+		return ;
+	i = 0;
+	while (points[i])
+		free(points[i++]);
+	free(points);
+}
+
+void	free_map(t_point ***map)
+{
+	size_t	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+		free_points(map[i++]);
+	free(map);
+}
+
+t_point ***err_return(int *fd, char **input)
+{
+	if (fd)
+		close(*fd);
+	if (input)
+		free_lines(input);
 	return (NULL);
 }
 
-t_list *err_return(int *fd_p, char **map_strs)
+size_t	count_lines(char **lines)
 {
-	if (fd_p)
-		close(*fd_p);
-	if (map_strs)
-		free_strs(map_strs);
-	return (NULL);
+	size_t	size;
+
+	if (!lines)
+		return (0);
+	size = 0;
+	while (lines[size])
+		size++;
+	return (size);
+}
+
+char	**add_line(char **prev, char *line)
+{
+	size_t	prev_size;
+	size_t	i;
+	char	**res;
+
+	prev_size = count_lines(prev);
+	res = (char **)malloc(sizeof(char *) * (prev_size + 2));
+	if (!res)
+	{
+		free_lines(prev);
+		free(line);
+		return (NULL);
+	}
+	i = 0;
+	while (prev[i])
+	{
+		res[i] = prev[i];
+		i++;
+	}
+	res[i++] = line;
+	res[i] = NULL;
+	free(prev);
+	return (res);
+}
+
+char	**get_input(int fd)
+{
+	char	**res;
+	char	*line;
+
+	res = (char **)malloc(sizeof(char *));
+	if (!res)
+		return (NULL);
+	res[0] = NULL;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		res = add_line(res, line);
+		if (!res)
+			return (NULL);
+	}
+	return (res);
 }
 
 t_point	*init_point(int x, int y, int z)
@@ -49,76 +132,95 @@ t_point	*init_point(int x, int y, int z)
 	return (point);
 }
 
-t_list	*make_line_list(t_list *map, char *line, int x)
+t_point	**line_convert_points(char *line, int x)
 {
-	char	**points;
+	t_point	**points;
 	size_t	i;
-	t_list	*node;
-	t_point	*point;
+	size_t	size;
+	char	**elements;
 
-	points = ft_split(line, ' ');
-	if (!points)
+	elements = ft_split(line, ' ');
+	if (!elements)
 		return (NULL);
-	i = 0;
-	while (points[i])
+	size = count_lines(elements);
+	points = (t_point **)malloc(sizeof(t_point *) * (size + 1));
+	if (!points)
 	{
-		point = init_point(x, (int)(i + 1), ft_atoi(points[i]));
-		if (!point)
+		free_lines(elements);
+		return (NULL);
+	}
+	ft_bzero(points, sizeof(t_point *) * (size + 1));
+	i = 0;
+	while (i < size)
+	{
+		points[i] = init_point(x, (int)(i + 1), ft_atoi(elements[i]));
+		if (!points[i])
+		{
+			free_points(points);
+			free_lines(elements);
 			return (NULL);
-		node = ft_lstnew(point);
-		if (!node)
+		}
+		i++;
+	}
+	free_lines(elements);
+	return (points);
+}
+
+t_point	***get_map_data(char **input)
+{
+	t_point	***map;
+	size_t	lines_size;
+	size_t	i;
+
+	lines_size = count_lines(input);
+	map = (t_point ***)malloc(sizeof(t_point **) * (lines_size + 1));
+	if (!map)
+		return (NULL);
+	ft_bzero(map, sizeof(t_point **) * (lines_size + 1));
+	i = 0;
+	while (input[i])
+	{
+		map[i] = line_convert_points(input[i], i + 1);
+		if (!map[i])
+		{
+			free_map(map);
 			return (NULL);
-		ft_lstadd_back(&map, node);
+		}
 		i++;
 	}
 	return (map);
 }
 
-t_list	*get_map_data(int fd)
+t_point	***make_map(char *filename)
 {
-	t_list	*map;
-	char	*line;
-	int		x;
+	int		fd;
+	char	**input;
+	t_point	***map;
 
-	map = NULL;
-	x = 1;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-            break ;
-		map = make_line_list(map, line, x++);
-		free(line);
-	}
-	return (map);
-}
-
-t_list	*make_map(char *file_name)
-{
-    int		fd;
-    t_list  *map;
-
-    fd = open(file_name, O_RDONLY);
-    if (fd < 0)
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
 		return (err_return(NULL, NULL));
-    map = get_map_data(fd);
-    if (!map)
+	input = get_input(fd);
+	if (!input)
 		return (err_return(&fd, NULL));
-	close(fd);
+	map = get_map_data(input);
+	if (!map)
+		return (err_return(&fd, input));
+	free_lines(input);
 	return (map);
 }
 
-//int	main(void)
-//{
-//	t_list *map;
-//
-//	map = make_map("t2.fdf");
-//	while (map)
-//	{
-//		printf("(%d %d %d) ", ((t_point *)(map->content))->x, ((t_point *)(map->content))->y, ((t_point *)(map->content))->z);
-//		if (map->next && ((t_point *)(map->content))->x != ((t_point *)(map->next->content))->x)
-//			puts("");
-//		map = map->next;
-//	}
-//	return (0);
-//}
+int	main(void)
+{
+	t_point ***map;
+
+	map = make_map("t2.fdf");
+	for (int i = 0; map[i]; i++)
+	{
+		for (int j = 0; map[i][j]; j++)
+			printf("(%d, %d, %d) ", map[i][j]->x, map[i][j]->y, map[i][j]->z);
+		puts("");
+	}
+	free_map(map);
+	return (0);
+}
