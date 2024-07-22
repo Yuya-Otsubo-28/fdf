@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 static t_point ***err_return(int *fd, char **input)
 {
