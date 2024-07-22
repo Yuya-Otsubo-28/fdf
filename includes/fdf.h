@@ -31,9 +31,14 @@ typedef struct s_point {
 }	t_point;
 
 typedef struct s_data {
+	t_point	***map;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_point	***map;
+	void	*img;
+	char	*img_addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_data;
 
 void	free_data(t_data *data);
@@ -41,5 +46,7 @@ void	free_data(t_data *data);
 t_data	*data_init(void);
 
 t_point	***make_map(char *filename);
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
