@@ -11,20 +11,27 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 t_bool	draw(t_data *data)
 {
 	size_t	i;
 	size_t	j;
+	int		color;
 
 	i = 0;
 	while (data->map[i])
 	{
 		j = 0;
-		while (data->map[j])
+		while (data->map[i][j])
 		{
-			my_mlx_pixel_put(data, i * 5 + 10, j * 5 + 10, 0x00FFFFFF);
+			if (data->map[i][j]->color)
+				color = data->map[i][j]->color;
+			else if (data->map[i][j]->z)
+				color = 0xe80c0c;
+			else
+				color = 0x00FFFFFF;
+			my_mlx_pixel_put(data, i * 5 + 10, j * 5 + 10, color);
 			j++;
 		}
 		i++;
