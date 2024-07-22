@@ -13,6 +13,16 @@
 #include "libft.h"
 #include "fdf.h"
 
+static void	draw_line(t_point *a, t_point *b)
+{
+	int dx;
+	int dy;
+
+	dx = a->x - b->x;
+	dy = a->y - b->y;
+	
+}
+
 t_bool	draw(t_data *data)
 {
 	size_t	i;
