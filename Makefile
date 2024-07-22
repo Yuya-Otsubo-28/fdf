@@ -1,5 +1,5 @@
 NAME = fdf
-SRCS = ./src/data_init.c \
+SRCS = ./src/set_data.c \
 		./src/free_utils.c \
 		./src/main.c \
 		./src/make_map.c \

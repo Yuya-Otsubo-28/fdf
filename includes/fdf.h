@@ -59,7 +59,7 @@ void	free_map(t_point ***map);
 
 void	free_data(t_data *data);
 
-t_data	*data_init(void);
+t_data	*set_data(t_data *data);
 
 t_point	***make_map(char *filename);
 

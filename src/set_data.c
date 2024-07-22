@@ -20,14 +20,10 @@ static t_data	*err_return(t_data *data)
 	return (NULL);
 }
 
-t_data	*data_init(void)
+t_data	*set_data(t_data *data)
 {
-	t_data	*data;
-
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		return (err_return(NULL));
-	ft_bzero(data, sizeof(data));
+	if (!get_map_size(data))
+		return (err_return(data));
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		return (err_return(data));

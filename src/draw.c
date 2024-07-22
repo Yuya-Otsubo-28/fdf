@@ -31,7 +31,7 @@ t_bool	draw(t_data *data)
 				color = 0x00FF0000;
 			else
 				color = 0x00FFFFFF;
-			my_mlx_pixel_put(data, j * 5 + 10, i * 5 + 10, color);
+			my_mlx_pixel_put(data, data->map[i][j]->x * 5 + 10, data->map[i][j]->y * 5 + 10, color);
 			j++;
 		}
 		i++;

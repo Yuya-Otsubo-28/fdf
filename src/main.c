@@ -27,14 +27,16 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (err_return(NULL));
-	data = data_init();
+	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (err_return(NULL));
+	ft_bzero(data, sizeof(data));
 	data->map = make_map(argv[1]);
 	if (!(data->map))
 		return (err_return(data));
-	if (!get_map_size(data))
-		return (err_return(data));
+	data = set_data(data);
+	if (!data)
+		return(err_return(data));
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	mlx_loop(data->mlx_ptr);

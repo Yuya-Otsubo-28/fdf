@@ -81,7 +81,7 @@ static char	**get_input(int fd)
 	return (res);
 }
 
-static t_point	*init_point(int x, int y, int z)
+static t_point	*init_point(int y, int x, int z)
 {
 	t_point	*point;
 
