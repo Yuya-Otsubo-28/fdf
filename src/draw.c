@@ -26,7 +26,6 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * dy - dx;
 	i = 0;
 	j = 0;
-	printf("ax: %d, ay: %d, bx: %d, by: %d\n", a->x, a->y, b->x, b->y);
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while (i < dx)
 	{
@@ -37,7 +36,6 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 			j++;
 			p = p + 2 * dy - dx;
 		}
-		printf("%d\n", a->y);
 		i++;
 		my_mlx_pixel_put(data, a->x + i, a->y + j, a->color);
 	}
@@ -56,7 +54,6 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * dx - dy;
 	i = 0;
 	j = 0;
-	printf("> ax: %d, ay: %d, bx: %d, by: %d\n", a->x, a->y, b->x, b->y);
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while (i < dy)
 	{
