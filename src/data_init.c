@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 #include "libft.h"
 
 static t_data	*err_return(t_data *data)
@@ -33,6 +33,9 @@ t_data	*data_init(void)
 		return (err_return(data));
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	if (!(data->win_ptr))
+		return (err_return(data));
+	data->img = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!(data->img))
 		return (err_return(data));
 	return (data);
 }

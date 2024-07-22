@@ -53,6 +53,8 @@ void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
+	if (data->img)
+		mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
