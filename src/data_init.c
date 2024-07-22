@@ -24,7 +24,7 @@ t_data	*data_init(void)
 {
 	t_data	*data;
 
-	data = (t_data *)malloc(sizeof(data));
+	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (err_return(NULL));
 	ft_bzero(data, sizeof(data));

@@ -7,7 +7,7 @@ SRCS = ./src/data_init.c \
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -L./libmlx -L./libft
+CFLAGS = -Wall -Wextra -Werror -L./libmlx -L./libft -fsanitize=address
 LIBS = -lft -lmlx_Linux -lX11 -lXext
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
