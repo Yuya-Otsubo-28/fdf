@@ -15,6 +15,7 @@
 
 static int	err_return(t_data *data)
 {
+	ft_printf("ERROR\n");
 	if (data)
 		free_data(data);
 	return (EXIT_FAILURE);
@@ -30,6 +31,10 @@ int	main(int argc, char *argv[])
 	if (!data)
 		return (err_return(NULL));
 	data->map = make_map(argv[1]);
+	if (!(data->map))
+		return (err_return(data));
+	if (!get_map_size(data))
+		return (err_return(data));
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	mlx_loop(data->mlx_ptr);

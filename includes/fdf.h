@@ -40,6 +40,8 @@ typedef struct s_point {
 
 typedef struct s_data {
 	t_point	***map;
+	int		map_width;
+	int		map_height;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
@@ -60,6 +62,8 @@ void	free_data(t_data *data);
 t_data	*data_init(void);
 
 t_point	***make_map(char *filename);
+
+t_bool	get_map_size(t_data *data);
 
 t_bool	draw(t_data *data);
 
