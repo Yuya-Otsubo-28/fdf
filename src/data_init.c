@@ -13,7 +13,7 @@
 #include "fdf.h"
 #include "libft.h"
 
-t_data	*err_return(t_data *data)
+static t_data	*err_return(t_data *data)
 {
 	if (data)
 		free_data(data);
@@ -31,7 +31,7 @@ t_data	*data_init(void)
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		return (err_return(data));
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1020, "fdf");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 860, 510, "fdf");
 	if (!(data->win_ptr))
 		return (err_return(data));
 	return (data);

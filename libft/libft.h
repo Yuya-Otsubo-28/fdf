@@ -21,6 +21,7 @@
 # include <strings.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
 # define TRUE 1
 # define FALSE 0

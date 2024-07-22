@@ -13,45 +13,7 @@
 #include "libft.h"
 #include "../includes/fdf.h"
 
-#include <fcntl.h>
-
-void	free_lines(char **lines)
-{
-	size_t	i;
-
-	if (!lines)
-		return ;
-	i = 0;
-	while (lines[i])
-		free(lines[i++]);
-	free(lines);
-}
-
-void	free_points(t_point **points)
-{
-	size_t	i;
-
-	if (!points)
-		return ;
-	i = 0;
-	while (points[i])
-		free(points[i++]);
-	free(points);
-}
-
-void	free_map(t_point ***map)
-{
-	size_t	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-		free_points(map[i++]);
-	free(map);
-}
-
-t_point ***err_return(int *fd, char **input)
+static t_point ***err_return(int *fd, char **input)
 {
 	if (fd)
 		close(*fd);
@@ -72,7 +34,7 @@ size_t	count_lines(char **lines)
 	return (size);
 }
 
-char	**add_line(char **prev, char *line)
+static char	**add_line(char **prev, char *line)
 {
 	size_t	prev_size;
 	size_t	i;
@@ -98,7 +60,7 @@ char	**add_line(char **prev, char *line)
 	return (res);
 }
 
-char	**get_input(int fd)
+static char	**get_input(int fd)
 {
 	char	**res;
 	char	*line;
@@ -119,7 +81,7 @@ char	**get_input(int fd)
 	return (res);
 }
 
-t_point	*init_point(int x, int y, int z)
+static t_point	*init_point(int x, int y, int z)
 {
 	t_point	*point;
 
@@ -132,7 +94,7 @@ t_point	*init_point(int x, int y, int z)
 	return (point);
 }
 
-t_point	**line_convert_points(char *line, int x)
+static t_point	**line_convert_points(char *line, int x)
 {
 	t_point	**points;
 	size_t	i;
@@ -166,7 +128,7 @@ t_point	**line_convert_points(char *line, int x)
 	return (points);
 }
 
-t_point	***get_map_data(char **input)
+static t_point	***get_map_data(char **input)
 {
 	t_point	***map;
 	size_t	lines_size;
@@ -210,17 +172,17 @@ t_point	***make_map(char *filename)
 	return (map);
 }
 
-int	main(void)
-{
-	t_point ***map;
+// int	main(void)
+// {
+// 	t_point ***map;
 
-	map = make_map("t2.fdf");
-	for (int i = 0; map[i]; i++)
-	{
-		for (int j = 0; map[i][j]; j++)
-			printf("(%d, %d, %d) ", map[i][j]->x, map[i][j]->y, map[i][j]->z);
-		puts("");
-	}
-	free_map(map);
-	return (0);
-}
+// 	map = make_map("t2.fdf");
+// 	for (int i = 0; map[i]; i++)
+// 	{
+// 		for (int j = 0; map[i][j]; j++)
+// 			printf("(%d, %d, %d) ", map[i][j]->x, map[i][j]->y, map[i][j]->z);
+// 		puts("");
+// 	}
+// 	free_map(map);
+// 	return (0);
+// }

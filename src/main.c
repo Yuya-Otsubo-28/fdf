@@ -13,14 +13,14 @@
 #include "../includes/fdf.h"
 #include "libft.h"
 
-int	err_return(t_data *data)
+static int	err_return(t_data *data)
 {
 	if (data)
 		free_data(data);
 	return (EXIT_FAILURE);
 }
 
-int	main(int argc, char *argv)
+int	main(int argc, char *argv[])
 {
 	t_data	*data;
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv)
 	if (!data)
 		return (err_return(NULL));
 	data->map = make_map(argv[1]);
+	mlx_loop(data->mlx_ptr);
 	if (!(data->map))
 		return (err_return(data));
 }
