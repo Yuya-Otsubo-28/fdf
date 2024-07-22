@@ -23,8 +23,13 @@
 # include <stdarg.h>
 # include "mlx.h"
 
+# define TRUE 1
+# define FALSE 0
+
 # define WIN_WIDTH 860
 # define WIN_HEIGHT 520
+
+typedef int	t_bool;
 
 typedef struct s_point {
 	int	x;
@@ -55,6 +60,8 @@ void	free_data(t_data *data);
 t_data	*data_init(void);
 
 t_point	***make_map(char *filename);
+
+t_bool	draw(t_data *data);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 

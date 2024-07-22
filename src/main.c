@@ -30,6 +30,8 @@ int	main(int argc, char *argv[])
 	if (!data)
 		return (err_return(NULL));
 	data->map = make_map(argv[1]);
+	draw(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	mlx_loop(data->mlx_ptr);
 	if (!(data->map))
 		return (err_return(data));

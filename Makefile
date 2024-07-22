@@ -3,6 +3,7 @@ SRCS = ./src/data_init.c \
 		./src/free_utils.c \
 		./src/main.c \
 		./src/make_map.c \
+		./src/draw.c \
 		./src/my_mlx_pixel_put.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
