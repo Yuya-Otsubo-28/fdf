@@ -37,6 +37,11 @@ t_data	*data_init(void)
 	data->img = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!(data->img))
 		return (err_return(data));
+	data->img_addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, &data->endian);
+	if (!(data->img_addr))
+		return (err_return(data));
+	my_mlx_pixel_put(data, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (data);
 }
 
