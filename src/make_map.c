@@ -91,6 +91,7 @@ static t_point	*init_point(int x, int y, int z)
 	point->x = x;
 	point->y = y;
 	point->z = z;
+	point->color = 0;
 	return (point);
 }
 
@@ -115,7 +116,7 @@ static t_point	**line_convert_points(char *line, int x)
 	i = 0;
 	while (i < size)
 	{
-		points[i] = init_point(x, (int)(i + 1), ft_atoi(elements[i]));
+		points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
 		if (!points[i])
 		{
 			free_points(points);
@@ -142,7 +143,7 @@ static t_point	***get_map_data(char **input)
 	i = 0;
 	while (input[i])
 	{
-		map[i] = line_convert_points(input[i], i + 1);
+		map[i] = line_convert_points(input[i], i);
 		if (!map[i])
 		{
 			free_map(map);
