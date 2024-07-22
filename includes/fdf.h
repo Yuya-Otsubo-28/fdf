@@ -23,6 +23,9 @@
 # include <stdarg.h>
 # include "mlx.h"
 
+# define WIN_WIDTH 860
+# define WIN_HEIGHT 520
+
 typedef struct s_point {
 	int	x;
 	int	y;
