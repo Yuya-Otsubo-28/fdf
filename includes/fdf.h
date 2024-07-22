@@ -41,6 +41,12 @@ typedef struct s_data {
 	int		endian;
 }	t_data;
 
+void	free_lines(char **lines);
+
+void	free_points(t_point **points);
+
+void	free_map(t_point ***map);
+
 void	free_data(t_data *data);
 
 t_data	*data_init(void);

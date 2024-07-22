@@ -13,18 +13,40 @@
 #include "../includes/fdf.h"
 #include "libft.h"
 
-void	free_list_all(t_list *list)
+void	free_lines(char **lines)
 {
-	t_list	*next;
+	size_t	i;
 
-	if (!list)
+	if (!lines)
 		return ;
-	while (list)
-	{
-		next = list->next;
-		free(list);
-		list = next;
-	}
+	i = 0;
+	while (lines[i])
+		free(lines[i++]);
+	free(lines);
+}
+
+void	free_points(t_point **points)
+{
+	size_t	i;
+
+	if (!points)
+		return ;
+	i = 0;
+	while (points[i])
+		free(points[i++]);
+	free(points);
+}
+
+void	free_map(t_point ***map)
+{
+	size_t	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+		free_points(map[i++]);
+	free(map);
 }
 
 void	free_data(t_data *data)
@@ -36,7 +58,7 @@ void	free_data(t_data *data)
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
 	if (data->map)
-		free_list_all(data->map);
+		free_map(data->map);
 	free(data);
 	return ;
 }
