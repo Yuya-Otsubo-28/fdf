@@ -21,6 +21,7 @@
 # include <strings.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <math.h>
 # include "mlx.h"
 
 # define TRUE 1
@@ -64,6 +65,8 @@ t_data	*set_data(t_data *data);
 t_point	***make_map(char *filename);
 
 t_bool	get_map_size(t_data *data);
+
+void	isometric(t_data *data);
 
 t_bool	draw(t_data *data);
 

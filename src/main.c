@@ -37,6 +37,7 @@ int	main(int argc, char *argv[])
 	data = set_data(data);
 	if (!data)
 		return(err_return(data));
+	isometric(data);
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	mlx_loop(data->mlx_ptr);
