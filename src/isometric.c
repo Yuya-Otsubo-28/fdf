@@ -30,7 +30,7 @@ void	isometric(t_data *data)
 		{
 			point = data->map[i][j];
 			prev_x = point->x;
-			point->x = (prev_x - point->y) * cos(RAD);
+			point->x = (prev_x - point->y) * cos(RAD) + 100;
 			point->y = (prev_x + point->y) * sin(RAD) - point->z;
 			j++;
 		}
