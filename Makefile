@@ -10,8 +10,8 @@ SRCS = ./src/set_data.c \
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -L./libmlx -L./libft #-fsanitize=address
-LIBS = -lft -lmlx_Linux -lX11 -lXext
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+LIBS = -lft -lmlx_Linux -lX11 -lXext -lm
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 MLX_PATH = ./libmlx
@@ -20,7 +20,7 @@ MLX = $(MLX_PATH)/libmlx_Linux.a
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS)  -o $@ 
+	$(CC) $(CFLAGS) $(INCLUDES) -L./libmlx -L./libft $(OBJS) $(LIBS)  -o $@ 
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
