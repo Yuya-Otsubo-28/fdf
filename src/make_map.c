@@ -88,8 +88,8 @@ static t_point	*init_point(int y, int x, int z)
 	point = (t_point *)malloc(sizeof(t_point));
 	if (!point)
 		return (NULL);
-	point->x = x * 10 + 100;
-	point->y = y * 10 + 100;
+	point->x = x * 20 + 100;
+	point->y = y * 20 + 100;
 	point->z = z * 10;
 	if (!z)
 		point->color = 0x00FFFFFF;

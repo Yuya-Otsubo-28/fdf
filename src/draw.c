@@ -34,7 +34,7 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 		else
 		{
 			j++;
-			p = p + 2 * dy - dx;
+			p = p + 2 * dy - 2 * dx;
 		}
 		i++;
 		my_mlx_pixel_put(data, a->x + i, a->y + j, a->color);
@@ -54,6 +54,7 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * dx - dy;
 	i = 0;
 	j = 0;
+	printf("a\n");
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while (i < dy)
 	{
@@ -62,7 +63,7 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 		else
 		{
 			j++;
-			p = p + 2 * dx - dy;
+			p = p + 2 * dx - 2 * dy;
 		}
 		i++;
 		my_mlx_pixel_put(data, a->x + j, a->y + i, a->color);
@@ -76,6 +77,7 @@ static void	draw_line(t_data *data, t_point *a, t_point *b)
 
 	dx = b->x - a->x;
 	dy = b->y - a->y;
+	//printf("a(%d, %d): b(%d, %d): dx: %d, dy; %d\n",a->x, a->y, b->x, b->y, dx, dy);
 	if (ft_abs(dx) > ft_abs(dy))
 		sloop_less_than_one(data, a, b);
 	else
