@@ -54,7 +54,6 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * dx - dy;
 	i = 0;
 	j = 0;
-	printf("a\n");
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while (i < dy)
 	{
@@ -77,11 +76,19 @@ static void	draw_line(t_data *data, t_point *a, t_point *b)
 
 	dx = b->x - a->x;
 	dy = b->y - a->y;
-	//printf("a(%d, %d): b(%d, %d): dx: %d, dy; %d\n",a->x, a->y, b->x, b->y, dx, dy);
+	if (ft_abs(dx) <= ft_abs(dy))
+		sloop_more_than_one(data, a, b);
+}
+
+static void	draw_line2(t_data *data, t_point *a, t_point *b)
+{
+	int dx;
+	int dy;
+
+	dx = b->x - a->x;
+	dy = b->y - a->y;
 	if (ft_abs(dx) > ft_abs(dy))
 		sloop_less_than_one(data, a, b);
-	else
-		sloop_more_than_one(data, a, b);
 }
 
 t_bool	draw(t_data *data)
@@ -96,13 +103,28 @@ t_bool	draw(t_data *data)
 		while (data->map[i][j])
 		{
 			my_mlx_pixel_put(data, data->map[i][j]->x, data->map[i][j]->y, data->map[i][j]->color);
-			if (data->map[i + 1])
-				draw_line(data, data->map[i][j], data->map[i + 1][j]);
+			//if (data->map[i + 1])
+			//	draw_line(data, data->map[i][j], data->map[i + 1][j]);
 			if (data->map[i][j + 1])
 				draw_line(data, data->map[i][j], data->map[i][j + 1]);
 			j++;
 		}
 		i++;
+	}
+
+	i = data->map_height;
+	while (--i > 0)
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			my_mlx_pixel_put(data, data->map[i][j]->x, data->map[i][j]->y, data->map[i][j]->color);
+			if (i > 0)
+				draw_line2(data, data->map[i][j], data->map[i - 1][j]);
+			//if (data->map[i][j + 1])
+			//	draw_line(data, data->map[i][j], data->map[i][j + 1]);
+			j++;
+		}
 	}
 	return (TRUE);
 }

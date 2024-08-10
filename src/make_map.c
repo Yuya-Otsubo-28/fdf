@@ -88,7 +88,7 @@ static t_point	*init_point(int y, int x, int z)
 	point = (t_point *)malloc(sizeof(t_point));
 	if (!point)
 		return (NULL);
-	point->x = x * 20 + 100;
+	point->x = x * 20 + 200;
 	point->y = y * 20 + 100;
 	point->z = z * 10;
 	if (!z)
