@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (err_return(NULL));
-	ft_bzero(data, sizeof(data));
+	ft_bzero(data, sizeof(t_data));
 	data->map = make_map(argv[1]);
 	if (!(data->map))
 		return (err_return(data));
