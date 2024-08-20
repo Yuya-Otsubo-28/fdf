@@ -27,8 +27,8 @@
 # define TRUE 1
 # define FALSE 0
 
-# define WIN_WIDTH 860
-# define WIN_HEIGHT 520
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1040
 
 typedef int	t_bool;
 
