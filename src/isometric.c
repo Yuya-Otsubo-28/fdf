@@ -15,13 +15,6 @@
 
 #define RAD 0.523599
 
-static t_bool	err_return(t_data *data)
-{
-	if (data)
-		free_data(data);
-	return (FALSE);
-}
-
 t_bool	isometric(t_data *data)
 {
 	int		i;
@@ -30,7 +23,7 @@ t_bool	isometric(t_data *data)
 	t_point *point;
 
 	if (!get_map_size(data))
-		return (err_return(data));
+		return (FALSE);
 	i = 0;
 	while (i < data->map_height)
 	{

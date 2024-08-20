@@ -62,5 +62,6 @@ void	free_data(t_data *data)
 	if (data->map)
 		free_map(data->map);
 	free(data);
+	data = NULL;
 	return ;
 }
