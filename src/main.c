@@ -41,6 +41,8 @@ int	main(int argc, char *argv[])
 		return(err_return(data));
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+	mlx_hook(data->win_ptr, 9, 1L << 21, &expose_hook, data);
+	mlx_hook(data->win_ptr, 25, 1L << 18, &expose_hook, data);
 	mlx_hook(data->win_ptr, 33, 1L << 17, &finish_hook, data);
 	mlx_loop(data->mlx_ptr);
 }
