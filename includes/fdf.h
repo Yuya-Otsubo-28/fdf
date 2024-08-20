@@ -50,6 +50,9 @@ typedef struct s_data {
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		win_width;
+	int		win_height;
+	int		line_len;
 }	t_data;
 
 void	free_lines(char **lines);
@@ -66,7 +69,7 @@ t_point	***make_map(char *filename);
 
 t_bool	get_map_size(t_data *data);
 
-void	isometric(t_data *data);
+t_bool	isometric(t_data *data);
 
 t_bool	draw(t_data *data);
 
