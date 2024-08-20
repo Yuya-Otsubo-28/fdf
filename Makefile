@@ -7,11 +7,12 @@ SRCS = ./src/set_data.c \
 		./src/get_map_size.c \
 		./src/isometric.c \
 		./src/my_mlx_pixel_put.c \
-		./src/get_win_size.c
+		./src/get_win_size.c \
+		./src/finish_hook.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 LIBS = -lft -lmlx_Linux -lX11 -lXext -lm
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

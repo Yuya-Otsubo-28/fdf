@@ -76,4 +76,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void    get_win_size(t_data *data);
 
+int		finish_hook(t_data *data);
+
 #endif
