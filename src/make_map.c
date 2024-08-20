@@ -60,6 +60,19 @@ static char	**add_line(char **prev, char *line)
 	return (res);
 }
 
+static void	delete_nl(char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+			line[i] = '\0';
+		i++;
+	}
+}
+
 static char	**get_input(int fd)
 {
 	char	**res;
@@ -74,6 +87,7 @@ static char	**get_input(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		delete_nl(line);
 		res = add_line(res, line);
 		if (!res)
 			return (NULL);
@@ -88,9 +102,9 @@ static t_point	*init_point(int y, int x, int z)
 	point = (t_point *)malloc(sizeof(t_point));
 	if (!point)
 		return (NULL);
-	point->x = x * 10 + 300;
-	point->y = y * 10 + 200;
-	point->z = z * 10;
+	point->x = x * 20 + 300;
+	point->y = y * 20 + 200;
+	point->z = z * 20;
 	if (!z)
 		point->color = 0x00FFFFFF;
 	else
@@ -173,14 +187,15 @@ t_point	***make_map(char *filename)
 	if (!map)
 		return (err_return(&fd, input));
 	free_lines(input);
+	close(fd);
 	return (map);
 }
 
 // int	main(void)
 // {
 // 	t_point ***map;
-
-// 	map = make_map("t2.fdf");
+//
+// 	map = make_map("test_maps/mars.fdf");
 // 	for (int i = 0; map[i]; i++)
 // 	{
 // 		for (int j = 0; map[i][j]; j++)

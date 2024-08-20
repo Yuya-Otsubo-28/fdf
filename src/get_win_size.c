@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:01:43 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/20 14:30:47 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:53:37 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static int  get_win_height(t_data *data)
     }
     if (min < 0)
         adj_point_y(data, min);
-    printf("win_height\nmax: %d\nmin: %d\n", max, min); fflush(stdout);
     return (max - min + 300);
 }
 
@@ -103,7 +102,6 @@ static int get_win_width(t_data *data)
     }
     if (min < 0)
         adj_point_x(data, min);
-    printf("win_width\nmax: %d\nmin: %d\n", max, min); fflush(stdout);
     return (max - min + 300);
 }
 
@@ -113,7 +111,7 @@ static void compress_point_x(t_data *data)
     int i;
     int j;
 
-    divider = WIN_WIDTH / data->win_width + 1;
+    divider = data->win_width / WIN_WIDTH + 1;
     data->win_width = WIN_WIDTH;
     i = 0;
     while (i < data->map_height)
@@ -134,7 +132,7 @@ static void compress_point_y(t_data *data)
     int i;
     int j;
 
-    divider = WIN_HEIGHT / data->win_height + 1;
+    divider = data->win_height / WIN_HEIGHT + 1;
     data->win_height = WIN_HEIGHT;
     i = 0;
     while (i < data->map_height)
@@ -157,5 +155,4 @@ void    get_win_size(t_data *data)
         compress_point_y(data);
     if (data->win_width > WIN_WIDTH - 100)
         compress_point_x(data);
-    printf("height: %d\nwidth: %d\n", data->win_height, data->win_width); fflush(stdout);
 }
