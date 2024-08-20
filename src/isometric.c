@@ -15,13 +15,22 @@
 
 #define RAD 0.523599
 
-void	isometric(t_data *data)
+static t_bool	err_return(t_data *data)
+{
+	if (data)
+		free_data(data);
+	return (FALSE);
+}
+
+t_bool	isometric(t_data *data)
 {
 	int		i;
 	int		j;
 	int		prev_x;
 	t_point *point;
 
+	if (!get_map_size(data))
+		return (err_return(data));
 	i = 0;
 	while (i < data->map_height)
 	{
@@ -36,4 +45,5 @@ void	isometric(t_data *data)
 		}
 		i++;
 	}
+	return (TRUE);
 }
