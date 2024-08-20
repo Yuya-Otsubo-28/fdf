@@ -34,10 +34,11 @@ int	main(int argc, char *argv[])
 	data->map = make_map(argv[1]);
 	if (!(data->map))
 		return (err_return(data));
+	if (!isometric(data))
+		return (err_return(data));
 	data = set_data(data);
 	if (!data)
 		return(err_return(data));
-	isometric(data);
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	mlx_loop(data->mlx_ptr);

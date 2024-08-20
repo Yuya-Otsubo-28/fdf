@@ -109,19 +109,19 @@ static void	draw_line(t_data *data, t_point *a, t_point *b)
 
 t_bool	draw(t_data *data)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (data->map[i])
+	while (i < data->map_height)
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (j < data->map_width)
 		{
 			my_mlx_pixel_put(data, data->map[i][j]->x, data->map[i][j]->y, data->map[i][j]->color);
-			if (data->map[i + 1])
+			if (i != data->map_height - 1)
 				draw_line(data, data->map[i][j], data->map[i + 1][j]);
-			if (data->map[i][j + 1])
+			if (j != data->map_width - 1)
 				draw_line(data, data->map[i][j], data->map[i][j + 1]);
 			j++;
 		}

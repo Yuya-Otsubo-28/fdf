@@ -22,8 +22,7 @@ static t_data	*err_return(t_data *data)
 
 t_data	*set_data(t_data *data)
 {
-	if (!get_map_size(data))
-		return (err_return(data));
+	get_win_size(data);
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		return (err_return(data));

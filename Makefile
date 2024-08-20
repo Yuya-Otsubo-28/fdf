@@ -6,7 +6,8 @@ SRCS = ./src/set_data.c \
 		./src/draw.c \
 		./src/get_map_size.c \
 		./src/isometric.c \
-		./src/my_mlx_pixel_put.c
+		./src/my_mlx_pixel_put.c \
+		./src/get_win_size.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc

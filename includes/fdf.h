@@ -27,8 +27,8 @@
 # define TRUE 1
 # define FALSE 0
 
-# define WIN_WIDTH 860
-# define WIN_HEIGHT 520
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1040
 
 typedef int	t_bool;
 
@@ -50,6 +50,8 @@ typedef struct s_data {
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		win_width;
+	int		win_height;
 }	t_data;
 
 void	free_lines(char **lines);
@@ -66,10 +68,12 @@ t_point	***make_map(char *filename);
 
 t_bool	get_map_size(t_data *data);
 
-void	isometric(t_data *data);
+t_bool	isometric(t_data *data);
 
 t_bool	draw(t_data *data);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+void    get_win_size(t_data *data);
 
 #endif

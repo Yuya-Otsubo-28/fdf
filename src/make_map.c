@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make=map2.c                                        :+:      :+:    :+:   */
+/*   make_map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -60,6 +60,19 @@ static char	**add_line(char **prev, char *line)
 	return (res);
 }
 
+static void	delete_nl(char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+			line[i] = '\0';
+		i++;
+	}
+}
+
 static char	**get_input(int fd)
 {
 	char	**res;
@@ -74,6 +87,7 @@ static char	**get_input(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		delete_nl(line);
 		res = add_line(res, line);
 		if (!res)
 			return (NULL);
@@ -173,14 +187,15 @@ t_point	***make_map(char *filename)
 	if (!map)
 		return (err_return(&fd, input));
 	free_lines(input);
+	close(fd);
 	return (map);
 }
 
 // int	main(void)
 // {
 // 	t_point ***map;
-
-// 	map = make_map("t2.fdf");
+//
+// 	map = make_map("test_maps/mars.fdf");
 // 	for (int i = 0; map[i]; i++)
 // 	{
 // 		for (int j = 0; map[i][j]; j++)
