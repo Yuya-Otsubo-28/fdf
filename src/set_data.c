@@ -26,10 +26,10 @@ t_data	*set_data(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		return (err_return(data));
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width, data->win_height, "fdf");
 	if (!(data->win_ptr))
 		return (err_return(data));
-	data->img = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);
 	if (!(data->img))
 		return (err_return(data));
 	data->img_addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, &data->endian);

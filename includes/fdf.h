@@ -52,7 +52,6 @@ typedef struct s_data {
 	int		endian;
 	int		win_width;
 	int		win_height;
-	int		line_len;
 }	t_data;
 
 void	free_lines(char **lines);
@@ -74,5 +73,7 @@ t_bool	isometric(t_data *data);
 t_bool	draw(t_data *data);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+void    get_win_size(t_data *data);
 
 #endif
