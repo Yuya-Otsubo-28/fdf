@@ -62,20 +62,20 @@ void	free_map(t_point ***map);
 
 void	free_data(t_data *data);
 
-t_data	*set_data(t_data *data);
-
-t_point	***make_map(char *filename);
+t_bool	draw(t_data *data);
 
 t_bool	get_map_size(t_data *data);
 
+void	get_win_size(t_data *data);
+
+void	hooks(t_data *data);
+
 t_bool	isometric(t_data *data);
 
-t_bool	draw(t_data *data);
+t_point	***make_map(char *filename);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void    get_win_size(t_data *data);
-
-void    hooks(t_data *data);
+t_data	*set_data(t_data *data);
 
 #endif
