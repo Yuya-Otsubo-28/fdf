@@ -23,7 +23,7 @@ t_bool	isometric(t_data *data)
 	int		i;
 	int		j;
 	int		prev_x;
-	t_point *point;
+	t_point	*point;
 
 	if (!get_map_size(data))
 		return (FALSE);
