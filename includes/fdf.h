@@ -66,6 +66,10 @@ t_bool	draw(t_data *data);
 
 t_bool	get_map_size(t_data *data);
 
+void	adj_point_x(t_data *data, int min);
+
+void	adj_point_y(t_data *data, int min);
+
 void	get_win_size(t_data *data);
 
 void	hooks(t_data *data);
