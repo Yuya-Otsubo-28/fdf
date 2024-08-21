@@ -13,6 +13,9 @@
 #include "../includes/fdf.h"
 #include "libft.h"
 
+// [[cos(RAS), -cos(RAD)], [sin(RAD), sin(RAD)]][x, y] = [x', y']
+// RAD = pie / 6
+
 #define RAD 0.523599
 
 t_bool	isometric(t_data *data)

@@ -27,8 +27,8 @@
 # define TRUE 1
 # define FALSE 0
 
-# define WIN_WIDTH 860
-# define WIN_HEIGHT 520
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1040
 
 typedef int	t_bool;
 
@@ -76,8 +76,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void    get_win_size(t_data *data);
 
-int		finish_hook(t_data *data);
-
-int		expose_hook(t_data *data);
+void    hooks(t_data *data);
 
 #endif

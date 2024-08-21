@@ -96,17 +96,6 @@ static void	draw_line(t_data *data, t_point *a, t_point *b)
 		sloop_less_than_one(data, a, b);
 }
 
-// static void	draw_line2(t_data *data, t_point *a, t_point *b)
-// {
-// 	int dx;
-// 	int dy;
-
-// 	dx = b->x - a->x;
-// 	dy = b->y - a->y;
-// 	if (ft_abs(dx) > ft_abs(dy))
-// 		sloop_less_than_one(data, a, b);
-// }
-
 t_bool	draw(t_data *data)
 {
 	int	i;
