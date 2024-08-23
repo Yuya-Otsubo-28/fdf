@@ -32,7 +32,8 @@ t_data	*set_data(t_data *data)
 	data->img = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!(data->img))
 		return (err_return(data));
-	data->img_addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, &data->endian);
+	data->img_addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, \
+										&data->endian);
 	if (!(data->img_addr))
 		return (err_return(data));
 	return (data);
@@ -46,5 +47,3 @@ t_data	*set_data(t_data *data)
 //	(void)data;
 //	return (0);
 //}
-
-//cc  -L./libft -L./libmlx -I./includes -I./libft -I./libmlx src/data_init.c src/free_utils.c -lft -lmlx -lX11 -lXext

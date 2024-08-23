@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include "libft.h"
 
 // [[cos(RAS), -cos(RAD)], [sin(RAD), sin(RAD)]][x, y] = [x', y']
