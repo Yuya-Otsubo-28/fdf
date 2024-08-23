@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 		return (err_return(data));
 	data = set_data(data);
 	if (!data)
-		return(err_return(data));
+		return (err_return(data));
 	draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	hooks(data);

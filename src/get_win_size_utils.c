@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   get_win_size_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 17:51:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/21 19:31:08 by yuotsubo         ###   ########.fr       */
+/*   Created: 2024/08/21 18:21:25 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/08/21 18:22:23 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-static int	finish_hook(t_data *data)
+void	adj_point_y(t_data *data, int min)
 {
-	free_data(data);
-	exit(0);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map_height)
+	{
+		j = 0;
+		while (j < data->map_width)
+		{
+			data->map[i][j]->y += -min;
+			j++;
+		}
+		i++;
+	}
 }
 
-static int	expose_hook(t_data *data)
+void	adj_point_x(t_data *data, int min)
 {
-	draw(data);
-	return (0);
-}
+	int	i;
+	int	j;
 
-void	hooks(t_data *data)
-{
-	mlx_hook(data->win_ptr, 9, 1L << 21, &expose_hook, data);
-	mlx_hook(data->win_ptr, 25, 1L << 18, &expose_hook, data);
-	mlx_hook(data->win_ptr, 33, 1L << 17, &finish_hook, data);
+	i = 0;
+	while (i < data->map_height)
+	{
+		j = 0;
+		while (j < data->map_width)
+		{
+			data->map[i][j]->x += -min;
+			j++;
+		}
+		i++;
+	}
 }

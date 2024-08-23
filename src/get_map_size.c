@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include "libft.h"
 
 static int	get_map_width(t_point **line)
@@ -41,7 +41,7 @@ static t_bool	check_map_width(t_data *data)
 
 static int	get_map_height(t_point ***map)
 {
-	int height;
+	int	height;
 
 	height = 0;
 	while (map[height])
