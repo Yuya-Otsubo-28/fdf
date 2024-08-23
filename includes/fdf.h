@@ -82,4 +82,15 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 t_data	*set_data(t_data *data);
 
+size_t	count_lines(char **lines);
+
+char	**add_line(char **prev, char *line);
+
+void	delete_nl(char *line);
+
+t_point	*init_point(int y, int x, int z);
+
+t_point	**init_points(t_point **points, char **elements, \
+							int x, size_t	size);
+
 #endif

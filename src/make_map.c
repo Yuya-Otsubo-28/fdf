@@ -13,64 +13,13 @@
 #include "libft.h"
 #include "fdf.h"
 
-static t_point ***err_return(int *fd, char **input)
+static t_point	***err_return(int *fd, char **input)
 {
 	if (fd)
 		close(*fd);
 	if (input)
 		free_lines(input);
 	return (NULL);
-}
-
-size_t	count_lines(char **lines)
-{
-	size_t	size;
-
-	if (!lines)
-		return (0);
-	size = 0;
-	while (lines[size])
-		size++;
-	return (size);
-}
-
-static char	**add_line(char **prev, char *line)
-{
-	size_t	prev_size;
-	size_t	i;
-	char	**res;
-
-	prev_size = count_lines(prev);
-	res = (char **)malloc(sizeof(char *) * (prev_size + 2));
-	if (!res)
-	{
-		free_lines(prev);
-		free(line);
-		return (NULL);
-	}
-	i = 0;
-	while (prev[i])
-	{
-		res[i] = prev[i];
-		i++;
-	}
-	res[i++] = line;
-	res[i] = NULL;
-	free(prev);
-	return (res);
-}
-
-static void	delete_nl(char *line)
-{
-	size_t	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\n')
-			line[i] = '\0';
-		i++;
-	}
 }
 
 static char	**get_input(int fd)
@@ -95,27 +44,9 @@ static char	**get_input(int fd)
 	return (res);
 }
 
-static t_point	*init_point(int y, int x, int z)
-{
-	t_point	*point;
-
-	point = (t_point *)malloc(sizeof(t_point));
-	if (!point)
-		return (NULL);
-	point->x = x * 20 + 300;
-	point->y = y * 20 + 200;
-	point->z = z * 20;
-	if (!z)
-		point->color = 0x00FFFFFF;
-	else
-		point->color = 0x00FF0000;
-	return (point);
-}
-
 static t_point	**line_convert_points(char *line, int x)
 {
 	t_point	**points;
-	size_t	i;
 	size_t	size;
 	char	**elements;
 
@@ -130,18 +61,7 @@ static t_point	**line_convert_points(char *line, int x)
 		return (NULL);
 	}
 	ft_bzero(points, sizeof(t_point *) * (size + 1));
-	i = 0;
-	while (i < size)
-	{
-		points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
-		if (!points[i])
-		{
-			free_points(points);
-			free_lines(elements);
-			return (NULL);
-		}
-		i++;
-	}
+	init_points(points, elements, x, size);
 	free_lines(elements);
 	return (points);
 }
