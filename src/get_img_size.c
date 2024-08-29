@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_win_size.c                                     :+:      :+:    :+:   */
+/*   get_img_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:01:43 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/29 14:35:05 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:23:49 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-static int	get_win_height(t_data *data)
+static int	get_img_height(t_data *data)
 {
 	int	i;
 	int	j;
@@ -38,10 +38,10 @@ static int	get_win_height(t_data *data)
 	}
 	if (min < 0)
 		adj_point_y(data, min);
-	return (max - min + 1);
+	return (max - min);
 }
 
-static int	get_win_width(t_data *data)
+static int	get_img_width(t_data *data)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ static int	get_win_width(t_data *data)
 	}
 	if (min < 0)
 		adj_point_x(data, min);
-	return (max - min + 1);
+	return (max - min);
 }
 
 static void	compress_point_x(t_data *data)
@@ -75,8 +75,8 @@ static void	compress_point_x(t_data *data)
 	int	i;
 	int	j;
 
-	divider = data->win_width / WIN_WIDTH + 1;
-	data->win_width = WIN_WIDTH;
+	divider = data->img_width / IMG_WIDTH + 1;
+	data->img_width = IMG_WIDTH;
 	i = 0;
 	while (i < data->map_height)
 	{
@@ -96,8 +96,8 @@ static void	compress_point_y(t_data *data)
 	int	i;
 	int	j;
 
-	divider = data->win_height / WIN_HEIGHT + 1;
-	data->win_height = WIN_HEIGHT;
+	divider = data->img_height / IMG_HEIGHT + 1;
+	data->img_height = IMG_HEIGHT;
 	i = 0;
 	while (i < data->map_height)
 	{
@@ -111,11 +111,11 @@ static void	compress_point_y(t_data *data)
 	}
 }
 
-void	get_win_size(t_data *data)
+void	get_img_size(t_data *data)
 {
-	data->win_height = get_win_height(data);
-	data->win_width = get_win_width(data);
-	if (data->win_height > WIN_HEIGHT || data->win_width > WIN_WIDTH)
+	data->img_height = get_img_height(data);
+	data->img_width = get_img_width(data);
+	if (data->img_height > IMG_HEIGHT || data->img_width > IMG_WIDTH)
 	{
 		compress_point_x(data);
 		compress_point_y(data);
