@@ -29,6 +29,8 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1040
+# define IMG_WIDTH 1720
+# define IMG_HEIGHT 840
 
 typedef int	t_bool;
 
@@ -50,8 +52,8 @@ typedef struct s_data {
 	int		bpp;
 	int		line_len;
 	int		endian;
-	int		win_width;
-	int		win_height;
+	int		img_width;
+	int		img_height;
 }	t_data;
 
 void	free_lines(char **lines);
@@ -70,7 +72,7 @@ void	adj_point_x(t_data *data, int min);
 
 void	adj_point_y(t_data *data, int min);
 
-void	get_win_size(t_data *data);
+void	get_img_size(t_data *data);
 
 void	hooks(t_data *data);
 

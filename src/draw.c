@@ -36,6 +36,7 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 	int	p;
 	int	i;
 	int	j;
+	int	k;
 	int	dx;
 	int	dy;
 
@@ -44,15 +45,17 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * ft_abs(dy) - ft_abs(dx);
 	i = 0;
 	j = 0;
+	k = 0;
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while ((unsigned int)i < ft_abs(dx))
 	{
 		p = update_p(p, &j, dy, dx);
-		i++;
 		if (dx > 0)
-			my_mlx_pixel_put(data, a->x + i, a->y + j, a->color);
+			k++;
 		else
-			my_mlx_pixel_put(data, a->x - i, a->y + j, a->color);
+			k--;
+		my_mlx_pixel_put(data, a->x + k, a->y + j, a->color);
+		i++;
 	}
 }
 
@@ -61,6 +64,7 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	int	p;
 	int	i;
 	int	j;
+	int	k;
 	int	dx;
 	int	dy;
 
@@ -69,15 +73,17 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	p = 2 * ft_abs(dx) - ft_abs(dy);
 	i = 0;
 	j = 0;
+	k = 0;
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
 	while ((unsigned int)i < ft_abs(dy))
 	{
 		p = update_p(p, &j, dx, dy);
-		i++;
 		if (dy > 0)
-			my_mlx_pixel_put(data, a->x + j, a->y + i, a->color);
+			k++;
 		else
-			my_mlx_pixel_put(data, a->x + j, a->y - i, a->color);
+			k--;
+		my_mlx_pixel_put(data, a->x + j, a->y + k, a->color);
+		i++;
 	}
 }
 
@@ -108,9 +114,13 @@ t_bool	draw(t_data *data)
 			my_mlx_pixel_put(data, data->map[i][j]->x, data->map[i][j]->y, \
 								data->map[i][j]->color);
 			if (i != data->map_height - 1)
+			{
 				draw_line(data, data->map[i][j], data->map[i + 1][j]);
+			}
 			if (j != data->map_width - 1)
+			{
 				draw_line(data, data->map[i][j], data->map[i][j + 1]);
+			}
 			j++;
 		}
 		i++;
