@@ -35,7 +35,7 @@ t_bool	isometric(t_data *data)
 		{
 			point = data->map[i][j];
 			prev_x = point->x;
-			point->x = (prev_x - point->y) * cos(RAD) + 200;
+			point->x = (prev_x - point->y) * cos(RAD);
 			point->y = (prev_x + point->y) * sin(RAD) - point->z;
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:01:43 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/21 18:21:54 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:35:05 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	get_win_height(t_data *data)
 	}
 	if (min < 0)
 		adj_point_y(data, min);
-	return (max - min + 300);
+	return (max - min + 1);
 }
 
 static int	get_win_width(t_data *data)
@@ -66,7 +66,7 @@ static int	get_win_width(t_data *data)
 	}
 	if (min < 0)
 		adj_point_x(data, min);
-	return (max - min + 300);
+	return (max - min + 1);
 }
 
 static void	compress_point_x(t_data *data)
@@ -115,8 +115,9 @@ void	get_win_size(t_data *data)
 {
 	data->win_height = get_win_height(data);
 	data->win_width = get_win_width(data);
-	if (data->win_height > WIN_HEIGHT - 100)
-		compress_point_y(data);
-	if (data->win_width > WIN_WIDTH - 100)
+	if (data->win_height > WIN_HEIGHT || data->win_width > WIN_WIDTH)
+	{
 		compress_point_x(data);
+		compress_point_y(data);
+	}
 }
