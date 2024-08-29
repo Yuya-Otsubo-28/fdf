@@ -37,20 +37,16 @@ static void	sloop_less_than_one(t_data *data, t_point *a, t_point *b)
 	int	i;
 	int	j;
 	int	k;
-	int	dx;
-	int	dy;
 
-	dx = b->x - a->x;
-	dy = b->y - a->y;
-	p = 2 * ft_abs(dy) - ft_abs(dx);
+	p = 2 * ft_abs(b->y - a->y) - ft_abs(b->x - a->x);
 	i = 0;
 	j = 0;
 	k = 0;
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
-	while ((unsigned int)i < ft_abs(dx))
+	while ((unsigned int)i < ft_abs(b->x - a->x))
 	{
-		p = update_p(p, &j, dy, dx);
-		if (dx > 0)
+		p = update_p(p, &j, b->y - a->y, b->x - a->x);
+		if (b->x - a->x > 0)
 			k++;
 		else
 			k--;
@@ -65,20 +61,16 @@ static void	sloop_more_than_one(t_data *data, t_point *a, t_point *b)
 	int	i;
 	int	j;
 	int	k;
-	int	dx;
-	int	dy;
 
-	dx = b->x - a->x;
-	dy = b->y - a->y;
-	p = 2 * ft_abs(dx) - ft_abs(dy);
+	p = 2 * ft_abs(b->x - a->x) - ft_abs(b->y - a->y);
 	i = 0;
 	j = 0;
 	k = 0;
 	my_mlx_pixel_put(data, a->x, a->y, a->color);
-	while ((unsigned int)i < ft_abs(dy))
+	while ((unsigned int)i < ft_abs(b->y - a->y))
 	{
-		p = update_p(p, &j, dx, dy);
-		if (dy > 0)
+		p = update_p(p, &j, b->x - a->x, b->y - a->y);
+		if (b->y - a->y > 0)
 			k++;
 		else
 			k--;
