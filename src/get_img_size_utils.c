@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:21:25 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/29 17:22:07 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:43:38 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,17 @@ void	adj_point_x(t_data *data, int min)
 		}
 		i++;
 	}
+}
+
+int	get_image_scale(t_data *data)
+{
+	int	width_scale;
+	int	height_scale;
+
+	width_scale = data->img_width / IMG_WIDTH + 1;
+	height_scale = data->img_height / IMG_HEIGHT + 1;
+	if (width_scale > height_scale)
+		return (width_scale);
+	else
+		return (height_scale);
 }

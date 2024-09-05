@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 13:01:43 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/29 17:23:49 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:43:20 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,42 +69,21 @@ static int	get_img_width(t_data *data)
 	return (max - min);
 }
 
-static void	compress_point_x(t_data *data)
+static void	compress_point(t_data *data, int scale, int axis)
 {
-	int	divider;
 	int	i;
 	int	j;
 
-	divider = data->img_width / IMG_WIDTH + 1;
-	data->img_width = IMG_WIDTH;
 	i = 0;
 	while (i < data->map_height)
 	{
 		j = 0;
 		while (j < data->map_width)
 		{
-			data->map[i][j]->x /= divider;
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	compress_point_y(t_data *data)
-{
-	int	divider;
-	int	i;
-	int	j;
-
-	divider = data->img_height / IMG_HEIGHT + 1;
-	data->img_height = IMG_HEIGHT;
-	i = 0;
-	while (i < data->map_height)
-	{
-		j = 0;
-		while (j < data->map_width)
-		{
-			data->map[i][j]->y /= divider;
+			if (axis == X)
+				data->map[i][j]->x /= scale;
+			else if (axis == Y)
+				data->map[i][j]->y /= scale;
 			j++;
 		}
 		i++;
@@ -113,11 +92,14 @@ static void	compress_point_y(t_data *data)
 
 void	get_img_size(t_data *data)
 {
+	int	scale;
+
 	data->img_height = get_img_height(data);
 	data->img_width = get_img_width(data);
-	if (data->img_height > IMG_HEIGHT || data->img_width > IMG_WIDTH)
+	scale = get_image_scale(data);
+	if (scale > 1)
 	{
-		compress_point_x(data);
-		compress_point_y(data);
+		compress_point(data, scale, X);
+		compress_point(data, scale, Y);
 	}
 }

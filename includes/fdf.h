@@ -27,6 +27,10 @@
 # define TRUE 1
 # define FALSE 0
 
+# define X 0
+# define Y 1
+# define Z 2
+
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1040
 # define IMG_WIDTH 1720
@@ -73,6 +77,8 @@ t_bool	get_map_size(t_data *data);
 void	adj_point_x(t_data *data, int min);
 
 void	adj_point_y(t_data *data, int min);
+
+int		get_image_scale(t_data *data);
 
 void	get_img_size(t_data *data);
 
