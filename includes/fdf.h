@@ -32,6 +32,8 @@
 # define IMG_WIDTH 1720
 # define IMG_HEIGHT 840
 
+# define ESC_KEY 65307
+
 typedef int	t_bool;
 
 typedef struct s_point {
