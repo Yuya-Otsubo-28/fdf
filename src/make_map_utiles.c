@@ -6,24 +6,13 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:25:13 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/23 16:54:59 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:55:36 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-size_t	count_lines(char **lines)
-{
-	size_t	size;
-
-	if (!lines)
-		return (0);
-	size = 0;
-	while (lines[size])
-		size++;
-	return (size);
-}
 
 char	**add_line(char **prev, char *line)
 {
@@ -89,7 +78,10 @@ t_point	**init_points(t_point **points, char **elements, \
 	i = 0;
 	while (i < size)
 	{
-		points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
+		if (is_number(elements[i]))
+			points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
+		else
+			points[i] = NULL;
 		if (!points[i])
 		{
 			free_points(points);
