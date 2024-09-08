@@ -10,7 +10,8 @@ SRCS = ./src/set_data.c \
 		./src/my_mlx_pixel_put.c \
 		./src/get_img_size.c \
 		./src/get_img_size_utils.c \
-		./src/hooks.c
+		./src/hooks.c \
+		./src/is_fdf_file.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc
