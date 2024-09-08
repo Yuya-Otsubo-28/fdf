@@ -6,23 +6,24 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:25:13 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/08/23 16:54:59 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:02:38 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-size_t	count_lines(char **lines)
+static t_bool	is_number(char *s)
 {
-	size_t	size;
+	size_t	i;
 
-	if (!lines)
-		return (0);
-	size = 0;
-	while (lines[size])
-		size++;
-	return (size);
+	i = 0;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	if (s[i] >= '0' && s[i] <= '9')
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 char	**add_line(char **prev, char *line)
@@ -89,7 +90,10 @@ t_point	**init_points(t_point **points, char **elements, \
 	i = 0;
 	while (i < size)
 	{
-		points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
+		if (is_number(elements[i]))
+			points[i] = init_point(x, (int)i, ft_atoi(elements[i]));
+		else
+			points[i] = NULL;
 		if (!points[i])
 		{
 			free_points(points);

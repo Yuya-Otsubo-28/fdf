@@ -61,7 +61,9 @@ static t_point	**line_convert_points(char *line, int x)
 		return (NULL);
 	}
 	ft_bzero(points, sizeof(t_point *) * (size + 1));
-	init_points(points, elements, x, size);
+	points = init_points(points, elements, x, size);
+	if (!points)
+		return (NULL);
 	free_lines(elements);
 	return (points);
 }
@@ -103,7 +105,7 @@ t_point	***make_map(char *filename)
 	if (fd < 0)
 		return (err_return(NULL, NULL));
 	input = get_input(fd);
-	if (!input)
+	if (!input || !input[0])
 		return (err_return(&fd, NULL));
 	map = get_map_data(input);
 	if (!map)

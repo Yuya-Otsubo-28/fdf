@@ -11,7 +11,8 @@ SRCS = ./src/set_data.c \
 		./src/get_img_size.c \
 		./src/get_img_size_utils.c \
 		./src/hooks.c \
-		./src/is_fdf_file.c
+		./src/is_fdf_file.c \
+		./src/count_lines.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./includes -I./libmlx -I./libft
 CC = cc
