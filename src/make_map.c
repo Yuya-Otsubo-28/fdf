@@ -97,6 +97,8 @@ t_point	***make_map(char *filename)
 	char	**input;
 	t_point	***map;
 
+	if (!is_fdf_file(filename))
+		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (err_return(NULL, NULL));

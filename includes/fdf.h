@@ -103,4 +103,6 @@ t_point	*init_point(int y, int x, int z);
 t_point	**init_points(t_point **points, char **elements, \
 							int x, size_t	size);
 
+t_bool  is_fdf_file(char *filename);
+
 #endif
