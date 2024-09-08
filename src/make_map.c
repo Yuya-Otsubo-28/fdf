@@ -106,7 +106,7 @@ t_point	***make_map(char *filename)
 		return (err_return(NULL, NULL));
 	input = get_input(fd);
 	if (!input || !input[0])
-		return (err_return(&fd, NULL));
+		return (err_return(&fd, input));
 	map = get_map_data(input);
 	if (!map)
 		return (err_return(&fd, input));
