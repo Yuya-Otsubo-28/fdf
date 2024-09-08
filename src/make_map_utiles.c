@@ -6,13 +6,25 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:25:13 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/09/08 17:55:36 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:02:38 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
+static t_bool	is_number(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	if (s[i] >= '0' && s[i] <= '9')
+		return (TRUE);
+	else
+		return (FALSE);
+}
 
 char	**add_line(char **prev, char *line)
 {

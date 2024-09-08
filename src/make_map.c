@@ -61,7 +61,9 @@ static t_point	**line_convert_points(char *line, int x)
 		return (NULL);
 	}
 	ft_bzero(points, sizeof(t_point *) * (size + 1));
-	init_points(points, elements, x, size);
+	points = init_points(points, elements, x, size);
+	if (!points)
+		return (NULL);
 	free_lines(elements);
 	return (points);
 }
